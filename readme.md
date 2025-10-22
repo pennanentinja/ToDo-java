@@ -4,9 +4,9 @@
 Tämä on yksinkertainen tehtävälista-sovellus, joka on toteutettu natiivilla JavaScriptillä. Sovellus hyödyntää DOM-skriptauksen ja lomakkeiden käsittelyn perusteita. Käyttäjä voi lisätä tehtäviä, merkitä ne tehdyiksi, poistaa niitä ja seurata tehtävien määrää laskurin avulla.
 
 ## 🔗 Linkit
-- **Julkaistu sovellus:** [Katso sovellus Netlifyssa](https://oma-netlify-linkki.netlify.app)
+- **Julkaistu sovellus:** [Katso sovellus Netlifyssa](https://tehtavalistajava.netlify.app/)
 - **Esittelyvideo:** [Katso demovideo Laurean videopalvelussa](https://oma-videolinkki.com)
-- **GitHub-repositorio:** [Avaa GitHub-projekti](https://github.com/kayttaja/todo-projekti)
+- **GitHub-repositorio:** [Avaa GitHub-projekti](https://github.com/pennanentinja/ToDo-java)
 
 
 ## ⚙️ Tekninen toteutus
