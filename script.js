@@ -1,68 +1,75 @@
 // Haetaan tarvittavat elementit
-const form = document.getElementById("todo-form");
-const input = document.getElementById("todo-input");
-const list = document.getElementById("todo-list");
-const error = document.getElementById("error-message");
-const counter = document.getElementById("counter");
+const lomake = document.getElementById("todo-form");
+const syote = document.getElementById("todo-input");
+const lista = document.getElementById("todo-list");
+const virheviesti = document.getElementById("error-message");
+const laskuri = document.getElementById("counter");
 
-// Tehtävälista tallennetaan vain muistiin
-let todos = [];
+// Ladataan tallennetut tehtävät localStoragesta
+let tehtavat = JSON.parse(localStorage.getItem("tehtavat")) || [];
 
 // Päivittää tehtävien määrän
-function updateCounter() {
-  const remaining = todos.filter(todo => !todo.done).length;
-  counter.textContent = `Tehtäviä jäljellä: ${remaining}`;
+function paivitaLaskuri() {
+  const jaljella = tehtavat.filter(tehtava => !tehtava.valmis).length;
+  laskuri.textContent = `Tehtäviä jäljellä: ${jaljella}`;
+}
+
+// Tallentaa tehtävät localStorageen
+function tallennaTehtavat() {
+  localStorage.setItem("tehtavat", JSON.stringify(tehtavat));
 }
 
 // Piirtää tehtävät listalle
-function renderTodos() {
-  list.innerHTML = "";
-  todos.forEach((todo, index) => {
-    const li = document.createElement("li");
-    li.className = todo.done ? "done" : "";
-    li.textContent = todo.text;
-
-    const actions = document.createElement("div");
-
-    const doneBtn = document.createElement("button");
-    doneBtn.textContent = "✓";
-    doneBtn.onclick = () => {
-      todos[index].done = !todos[index].done;
-      renderTodos();
-    };
-
-    const deleteBtn = document.createElement("button");
-    deleteBtn.textContent = "🗑️";
-    deleteBtn.onclick = () => {
-      todos.splice(index, 1);
-      renderTodos();
-    };
-
-    actions.appendChild(doneBtn);
-    actions.appendChild(deleteBtn);
-    li.appendChild(actions);
-    list.appendChild(li);
+function piirraTehtavat() {
+  lista.innerHTML = "";
+  tehtavat.forEach((tehtava, indeksi) => {
+    const valmisLuokka = tehtava.valmis ? "done" : "";
+    lista.innerHTML += `
+      <li class="${valmisLuokka}">
+        ${tehtava.teksti}
+        <div>
+          <button onclick="merkitseValmiiksi(${indeksi})">✓</button>
+          <button onclick="poistaTehtava(${indeksi})">x</button>
+        </div>
+      </li>
+    `;
   });
-  updateCounter();
+  paivitaLaskuri();
+}
+
+// Merkitsee tehtävän tehdyksi tai palauttaa sen aktiiviseksi
+function merkitseValmiiksi(indeksi) {
+  tehtavat[indeksi].valmis = !tehtavat[indeksi].valmis;
+  tallennaTehtavat();
+  piirraTehtavat();
+}
+
+// Poistaa tehtävän listalta
+function poistaTehtava(indeksi) {
+  tehtavat.splice(indeksi, 1);
+  tallennaTehtavat();
+  piirraTehtavat();
 }
 
 // Lomakkeen lähetys
-form.addEventListener("submit", e => {
-  e.preventDefault();
-  const text = input.value.trim();
+lomake.addEventListener("submit", tapahtuma => {
+  tapahtuma.preventDefault();
+  const teksti = syote.value.trim();
 
-  if (text.length < 3) {
-    input.classList.add("error");
-    error.textContent = "Tehtävän pitää olla vähintään 3 merkkiä.";
+  if (teksti.length < 3) {
+    syote.classList.add("error");
+    virheviesti.textContent = "Tehtävän pitää olla vähintään 3 merkkiä.";
     return;
   }
 
-  input.classList.remove("error");
-  error.textContent = "";
+  syote.classList.remove("error");
+  virheviesti.textContent = "";
 
-  todos.push({ text, done: false });
-  renderTodos();
-  input.value = "";
+  tehtavat.push({ teksti, valmis: false });
+  tallennaTehtavat();
+  piirraTehtavat();
+  syote.value = "";
 });
 
-renderTodos();
+// Näytetään tallennetut tehtävät sivun latauksen yhteydessä
+piirraTehtavat();

@@ -1,17 +1,37 @@
+/* Tausta ja yleinen asettelu */
 body {
-  font-family: Arial, sans-serif;
-  background-color: #f0f0f0;
-  padding: 20px;
+  font-family: 'Segoe UI', sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start; /* ei keskitetä pystysuunnassa, jotta pitkä lista toimii */
+  min-height: 100vh;
+  background-image: url('kuvat/taustakuva.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  margin: 0;
+  padding: 40px 20px; /* yläreunaan tilaa */
+  color: #333;
 }
 
+/* Sovelluksen laatikko */
 main {
   max-width: 500px;
-  margin: auto;
-  background: white;
-  padding: 20px;
-  border-radius: 8px;
+  width: 100%;
+  background: rgba(230, 230, 255, 0.4); /* pastellilaventeli tausta */
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
 
+/* Otsikko */
+h1 {
+  text-align: center;
+  color: #5a4fcf;
+  margin-bottom: 20px;
+}
+
+/* Lomake */
 form {
   display: flex;
   gap: 10px;
@@ -20,40 +40,81 @@ form {
 
 input[type="text"] {
   flex: 1;
-  padding: 8px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
+  padding: 10px;
+  border: 2px solid #ccc;
+  border-radius: 6px;
+  font-size: 1em;
 }
 
 input.error {
-  border-color: red;
+  border-color: #e74c3c;
+  background-color: #ffe6e6;
 }
 
 #error-message {
-  color: red;
+  color: #e74c3c;
   font-size: 0.9em;
+  margin-top: 5px;
 }
 
+/* Nappien tyyli */
 button {
-  padding: 8px 12px;
+  padding: 10px 16px;
+  background-color: #5a4fcf;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 
+button:hover {
+  background-color: #3f36a0;
+}
+
+/* Tehtävälista */
 ul {
   list-style: none;
   padding: 0;
+  margin-top: 10px;
 }
 
 li {
   display: flex;
   justify-content: space-between;
-  align-items: center;
-  background: #eee;
-  margin-bottom: 5px;
-  padding: 8px;
-  border-radius: 4px;
+  align-items: flex-start;
+  background: #f6f0ff;
+  margin-bottom: 8px;
+  padding: 10px;
+  border-radius: 6px;
+  border-left: 5px solid #5a4fcf;
+  gap: 10px;
 }
 
+/* Tehtävän teksti */
+li .tehtava-teksti {
+  flex: 1;
+  word-break: break-word;
+}
+
+/* Nappien ryhmä */
+li div {
+  display: flex;
+  gap: 6px;
+}
+
+/* Valmiit tehtävät */
 li.done {
   text-decoration: line-through;
-  color: gray;
+  color: #999;
+  background-color: #e0e0e0;
+  border-left-color: #999;
+}
+
+/* Laskuri */
+#counter {
+  text-align: center;
+  font-weight: bold;
+  margin-top: 15px;
+  color: #5a4fcf;
 }
