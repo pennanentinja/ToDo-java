@@ -84,7 +84,7 @@ Toteutin sovelluksen vaiheittain:
 ---
 
 ## 🙏 Kiitokset
-- [MDN Web Docs – JavaScript DOM](https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model)
+- [Opettajan antama materiaali](https://mika-stenberg.gitbook.io/web-sovelluksia-javascriptin-avulla)
 - [Netlify – Deployment](https://www.netlify.com/)
 - [Ws3 school](https://www.w3schools.com/java/)
 - **Microsoft Copilot** – AI-avustaja projektin suunnittelussa, koodin tarkistuksessa ja dokumentoinnissa
