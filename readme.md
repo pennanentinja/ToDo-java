@@ -2,7 +2,7 @@
 
 ## 👤 Projektin nimi ja tekijät
 **Tehtävälista**  
-Tekijä: Tinja  
+Tekijä: Tinja Pennanen  
 (Yksilötyö – ei parityötä)
 
 ---
